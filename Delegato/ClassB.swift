@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol ClassBDelegate: class {
+    func changeBackgroundColor (_ color: UIColor?)
+}
+
 class ClassB: UIViewController {
     
+    weak var delegate: ClassBDelegate?
     
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
@@ -36,7 +41,7 @@ class ClassB: UIViewController {
     }
     
     func handleTap (_ tapGesture: UITapGestureRecognizer) {
-        
-        
+        view.backgroundColor = tapGesture.view?.backgroundColor
+        delegate?.changeBackgroundColor(tapGesture.view?.backgroundColor)
     }
 }
